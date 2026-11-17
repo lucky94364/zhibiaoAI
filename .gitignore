@@ -1,0 +1,25 @@
+# Runtime and local configuration
+.env
+.env.*
+!.env.example
+var/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend and browser verification
+node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/playwright-report/
+frontend/test-results/
+
+# OS/editor
+.DS_Store
+.idea/
+docs/
