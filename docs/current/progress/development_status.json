@@ -1,0 +1,95 @@
+{
+  "baseline_version": "2.0",
+  "updated_on": "2026-11-17",
+  "application_implemented": false,
+  "document_preparation": "complete",
+  "external_workflow_api": "unconfirmed",
+  "stages": [
+    {
+      "id": "S01",
+      "title": "工程骨架与配置",
+      "status": "verified",
+      "evidence_file": "S01.md",
+      "scope": "工程骨架与配置；不表示业务、mock 工作流、OCR、AI 已完成"
+    },
+    {
+      "id": "S02",
+      "title": "数据、任务与迁移",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S03",
+      "title": "文件上传与持久保存",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S04",
+      "title": "解析、OCR与来源预览",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S05",
+      "title": "AI接口与校验",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S06",
+      "title": "要求提取与确认",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S07",
+      "title": "材料分类与字段",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S08",
+      "title": "条件核验与矩阵",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S09",
+      "title": "补材与局部重检",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S10",
+      "title": "前端工作台",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S11",
+      "title": "导出与用户决定",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S12",
+      "title": "真实AI联通",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S13",
+      "title": "全链路回归",
+      "status": "not_started",
+      "evidence_file": null
+    },
+    {
+      "id": "S14",
+      "title": "部署与交接",
+      "status": "not_started",
+      "evidence_file": null
+    }
+  ],
+  "application_skeleton_implemented": true
+}

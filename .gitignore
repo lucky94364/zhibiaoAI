@@ -23,3 +23,14 @@ frontend/test-results/
 .DS_Store
 .idea/
 docs/
+
+# Keep the current development entry and stage evidence reviewable.
+!docs/
+docs/*
+!docs/current/
+docs/current/*
+!docs/current/README.md
+!docs/current/progress/
+docs/current/progress/*
+!docs/current/progress/S01.md
+!docs/current/progress/development_status.json

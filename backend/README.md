@@ -1,11 +1,24 @@
 # backend
 
-当前状态：目录与开发约定已建立，尚未创建可运行后端。
+S01 已实现 FastAPI 工程骨架、配置、health/capabilities 与 Alembic 基础；尚无业务表、任务或 AI/OCR 实现。
 
-技术基线：Python 3.11、FastAPI、Pydantic、SQLAlchemy、Alembic，依赖使用 uv 管理。先单 worker 与 SQLite，保留 PostgreSQL 和对象存储适配。
+本机 Python：`/opt/anaconda3/bin/python3.11`（3.11.7），依赖由 uv.lock 锁定。uv 0.13.8 本次装在临时目录 `/private/tmp/zb-uv/bin/uv`；普通终端需要先安装 uv 并加入 PATH，也可将下述 uv 替换为该绝对路径。
 
-阅读：[架构](../docs/current/01_系统架构与目录规范.md)、[数据与状态](../docs/current/02_数据模型与状态机.md)、[API](../docs/current/03_API与接口契约.md)、[分阶段任务](../docs/current/07_AI分步开发与执行提示.md)。
+从项目根进入 backend：
 
-文件、数据、任务和版本逻辑写入本目录。运行数据存根目录 var，读取根 .env；真实 API 协议需验证后接入，默认 mock 必须明示。
+```sh
+cd backend
+uv sync --frozen --python /opt/anaconda3/bin/python3.11
+uv run --frozen pytest -q
+uv run --frozen alembic upgrade head
+uv run --frozen alembic current
+uv run --frozen uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
 
-S01—S02 后在本文件记录实际安装、迁移、API/worker启动和测试命令。当前没有 app 包和 pyproject，启动命令尚不可执行。
+本机 8000 已占用，本次实际验收使用 `--port 8001`。接口 `/api/v1/health`、`/api/v1/capabilities`；OpenAPI `/openapi.json`，交互文档 `/docs`。仅实现的两个路径出现在运行时契约中，完整设计仍在 docs/current/contracts。
+
+配置自动加载根 `.env`（可复制 `.env.example`），环境变量优先。相对存储与 SQLite 路径以项目根解析，密钥用 SecretStr，响应不返回配置或密钥。CORS 逗号分隔。
+
+capabilities 的 storage 为临时文件写读探测，database 为连接与 SELECT 1 探测，不代表业务持久层已完成。解析、OCR、转换和 workflow_api 当前均 unavailable，即使填入密钥也不会伪称适配已完成；mock 仅标记所选配置，未实现模拟工作流。
+
+Alembic 当前无 revision、无业务表；upgrade head 仅验证基础可运行，S02 才实现模型和迁移。worker 尚未实现，无启动命令。运行数据在根 var/，不进入版本库。

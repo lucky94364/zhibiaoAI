@@ -8,7 +8,7 @@
 
 ## 当前项目状态
 
-文档与目录约定已建立，业务应用尚未初始化；frontend/backend 目前只有说明，不能直接启动服务。下一步为 [S01 工程骨架](docs/current/07_AI分步开发与执行提示.md)。
+S01 工程骨架已实现并验证，可按 frontend/backend README 启动；业务功能、OCR 和 AI 尚未实现。阶段证据见 docs/current/progress/S01.md。后续 S02—S14 尚未启动。
 
 ```text
 frontend/       React＋TypeScript 工作台

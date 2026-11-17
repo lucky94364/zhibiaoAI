@@ -1,11 +1,24 @@
 # frontend
 
-当前状态：目录与开发约定已建立，尚未创建可运行前端。
+S01：React/TypeScript/Vite/Ant Design 工程；服务概览读取真实 health 与 capabilities，项目路由仅说明后续功能，没有模拟项目数据。
 
-技术基线：React、TypeScript、Vite，组件优先 Ant Design。S01 初始化并锁定兼容依赖，后续 npm ci 安装。
+验证环境 Node 22.19.0、npm 10.9.3；Node 要求 >=22.12 且 <23。准确依赖版本见 package-lock.json。
 
-阅读：[架构与目录](../docs/current/01_系统架构与目录规范.md)、[前端开发说明](../docs/current/06_前端工作台开发说明.md)、[分阶段任务](../docs/current/07_AI分步开发与执行提示.md)。
+```sh
+cd frontend
+npm ci
+npm run dev
+npm run typecheck
+npm run build
+npm run preview
+```
 
-源代码写入本目录 src，业务状态从后端 API 获取；平台密钥不进入前端。旧 Demo 只用于视觉与交互参考。
+开发地址 http://127.0.0.1:5173（固定端口），默认 `/api` 代理至 http://127.0.0.1:8000。本次 8000 被占用，后端使用 8001，启动命令为：
 
-S01 后应在本文件记录实际 Node/依赖版本、启动、类型检查、构建及浏览器测试命令。当前不要运行尚不存在的 package.json 脚本。
+```sh
+ZB_DEV_API_TARGET=http://127.0.0.1:8001 npm run dev
+```
+
+可在 frontend/.env.local 配置公开的 `VITE_API_BASE_URL`（默认 /api/v1）；跨域地址需与后端 CORS 匹配。前端不读取根 .env，不放密钥。生产构建需要托管端配置 /api 反向代理和 SPA 路由回退，本阶段未部署。
+
+验证包含类型检查、生产构建、开发服务 HTML 与代理实际 HTTP 联通。尚未执行浏览器视觉或端到端测试。Ant Design 单包构建有 >500kB 提示，后续工作台阶段按页面拆包。
