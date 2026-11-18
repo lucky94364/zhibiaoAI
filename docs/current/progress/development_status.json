@@ -15,8 +15,9 @@
     {
       "id": "S02",
       "title": "数据、任务与迁移",
-      "status": "not_started",
-      "evidence_file": null
+      "status": "verified",
+      "evidence_file": "S02.md",
+      "scope": "SQLite 数据、迁移、项目接口与任务基础；非完整业务闭环"
     },
     {
       "id": "S03",
@@ -91,5 +92,6 @@
       "evidence_file": null
     }
   ],
-  "application_skeleton_implemented": true
+  "application_skeleton_implemented": true,
+  "data_task_foundation_implemented": true
 }

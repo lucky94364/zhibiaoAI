@@ -34,3 +34,4 @@ docs/current/*
 docs/current/progress/*
 !docs/current/progress/S01.md
 !docs/current/progress/development_status.json
+!docs/current/progress/S02.md

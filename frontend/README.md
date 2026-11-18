@@ -1,6 +1,6 @@
 # frontend
 
-S01：React/TypeScript/Vite/Ant Design 工程；服务概览读取真实 health 与 capabilities，项目路由仅说明后续功能，没有模拟项目数据。
+S01：React/TypeScript/Vite/Ant Design 工程；服务概览读取真实 health 与 capabilities，项目路由仅说明后续功能，没有模拟项目数据。S02 已提供后端项目接口，项目工作台仍待后续阶段接入。
 
 验证环境 Node 22.19.0、npm 10.9.3；Node 要求 >=22.12 且 <23。准确依赖版本见 package-lock.json。
 

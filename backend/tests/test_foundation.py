@@ -59,4 +59,4 @@ def test_cors_and_openapi():
     client = TestClient(create_app(Settings(_env_file=None)))
     response = client.options('/api/v1/health', headers={'Origin': 'http://localhost:5173', 'Access-Control-Request-Method': 'GET'})
     assert response.headers['access-control-allow-origin'] == 'http://localhost:5173'
-    assert set(client.get('/openapi.json').json()['paths']) == {'/api/v1/health', '/api/v1/capabilities'}
+    assert set(client.get('/openapi.json').json()['paths']) == {'/api/v1/health', '/api/v1/capabilities', '/api/v1/projects', '/api/v1/projects/{project_id}', '/api/v1/jobs/{job_id}', '/api/v1/jobs/{job_id}/retry'}

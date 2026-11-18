@@ -2,8 +2,8 @@ from alembic import context
 from sqlalchemy import create_engine
 from app.settings import Settings
 
-# S01 has no business tables; S02 will attach ORM metadata and revisions.
-target_metadata = None
+from app.models import metadata
+target_metadata = metadata
 url = Settings().database_url
 if context.is_offline_mode():
     context.configure(url=url, target_metadata=target_metadata, literal_binds=True)

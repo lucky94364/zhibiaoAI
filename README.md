@@ -8,7 +8,7 @@
 
 ## 当前项目状态
 
-S01 工程骨架已实现并验证，可按 frontend/backend README 启动；业务功能、OCR 和 AI 尚未实现。阶段证据见 docs/current/progress/S01.md。后续 S02—S14 尚未启动。
+S01—S02 已验证：工程骨架、数据迁移、项目接口、持久任务和串行 worker 基础。可按 frontend/backend README 启动；业务处理、OCR 和 AI 尚未实现。阶段证据见 docs/current/progress/S01.md 与 S02.md。后续 S03—S14 尚未启动。
 
 ```text
 frontend/       React＋TypeScript 工作台
