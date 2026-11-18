@@ -1,0 +1,46 @@
+{
+  "candidates": [
+    {
+      "title": "负责人证书有效性",
+      "category": "eligibility",
+      "subject_role": "leader",
+      "expected_material_types": [
+        "personnel_certificate"
+      ],
+      "conditions": [
+        {
+          "condition_key": "C01",
+          "description": "结束日覆盖投标截止日（本契约示例仅含这一条件）",
+          "field_key": "valid_until",
+          "operator": "gte_context_date",
+          "expected": "deadline_date",
+          "unit": null,
+          "source_refs": [
+            {
+              "block_id": "BLK-T-Q02",
+              "quote": "有效期须覆盖投标截止日期"
+            }
+          ]
+        }
+      ],
+      "logic": {
+        "all": [
+          "C01"
+        ]
+      },
+      "phase": "bid",
+      "source_refs": [
+        {
+          "block_id": "BLK-T-Q02",
+          "quote": "有效期须覆盖投标截止日期"
+        }
+      ],
+      "ambiguities": []
+    }
+  ],
+  "questions": [],
+  "processed_block_ids": [
+    "BLK-T-Q02"
+  ],
+  "unresolved_block_ids": []
+}

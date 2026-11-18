@@ -1,0 +1,32 @@
+{
+  "material_candidates": [
+    {
+      "material_type": "personnel_certificate",
+      "title": "负责人证书",
+      "entity_name": "青禾数智测试有限公司",
+      "person_name": "林明",
+      "product_model": null,
+      "source_block_ids": [
+        "BLK-M-PERSON"
+      ],
+      "facts": [
+        {
+          "field_key": "valid_until",
+          "raw_value": "2026年10月31日",
+          "normalized_value": "2026-10-31",
+          "unit": null,
+          "extraction_state": "clear",
+          "source_refs": [
+            {
+              "block_id": "BLK-M-PERSON",
+              "quote": "有效期至：2026年10月31日"
+            }
+          ]
+        }
+      ],
+      "questions": []
+    }
+  ],
+  "questions": [],
+  "unclassified_block_ids": []
+}

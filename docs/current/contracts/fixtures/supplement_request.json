@@ -1,0 +1,9 @@
+{
+  "operation": "replace",
+  "new_file_ids": [
+    "DOC-new"
+  ],
+  "target_file_id": "DOC-old",
+  "expected_input_revision": 3,
+  "reason": "补充有效证书"
+}

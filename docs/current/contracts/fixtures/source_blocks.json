@@ -1,0 +1,27 @@
+{
+  "note": "合成的内存契约输入，只用于类型与引用校验；不代表真实PDF/OCR输出，不能用于证明OCR效果",
+  "blocks": [
+    {
+      "block_id": "BLK-T-Q02",
+      "file_id": "DOC-T-EXAMPLE",
+      "parse_job_id": "JOB-PARSE-T",
+      "page_index": 1,
+      "text": "提供拟派负责人持有的项目服务能力证书（模拟），持有人须为林明，所属单位须为投标主体，有效期须覆盖投标截止日期。",
+      "method": "native_text",
+      "bbox": null,
+      "quality": {}
+    },
+    {
+      "block_id": "BLK-M-PERSON",
+      "file_id": "DOC-M-EXAMPLE",
+      "parse_job_id": "JOB-PARSE-M",
+      "page_index": 1,
+      "text": "项目服务能力证书（模拟）\n持有人：林明。\n所属单位：青禾数智测试有限公司。\n有效期自：2024年1月1日。\n有效期至：2026年10月31日。",
+      "method": "ocr",
+      "bbox": null,
+      "quality": {
+        "fixture_only": true
+      }
+    }
+  ]
+}

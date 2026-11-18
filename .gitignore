@@ -28,7 +28,6 @@ docs/
 !docs/
 docs/*
 !docs/current/
-docs/current/*
 !docs/current/README.md
 !docs/current/progress/
 docs/current/progress/*

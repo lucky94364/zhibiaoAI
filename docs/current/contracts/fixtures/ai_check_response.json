@@ -1,0 +1,31 @@
+{
+  "requirement_id": "REQ-EXAMPLE",
+  "check_state": "contradicted",
+  "condition_results": [
+    {
+      "condition_key": "C01",
+      "state": "fail",
+      "reason": "结束日早于模拟截止日",
+      "evidence_refs": [
+        {
+          "material_id": "MAT-EXAMPLE",
+          "fact_id": "FCT-EXAMPLE",
+          "block_id": "BLK-M-PERSON",
+          "quote": "有效期至：2026年10月31日"
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "issues": [
+    "证书过期"
+  ],
+  "supplement_requests": [
+    {
+      "material_type": "personnel_certificate",
+      "subject": "林明",
+      "required_content": "覆盖要求截止日的有效证书",
+      "suggested_role": "人员资料提供方"
+    }
+  ]
+}

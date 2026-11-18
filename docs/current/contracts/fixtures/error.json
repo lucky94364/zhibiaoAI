@@ -1,0 +1,12 @@
+{
+  "error": {
+    "code": "VERSION_CONFLICT",
+    "message": "输入版本已变化",
+    "retryable": false,
+    "details": {
+      "expected": 3,
+      "current": 4
+    }
+  },
+  "request_id": "REQ-request-example"
+}

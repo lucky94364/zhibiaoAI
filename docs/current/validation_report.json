@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-17",
+  "documentation_validation_passed": true,
+  "preserved_original_files": 74,
+  "original_paths_unchanged_except_backed_up_root_readme": true,
+  "markdown_files_checked": 20,
+  "local_links_checked": 47,
+  "json_code_blocks_parsed": 5,
+  "schema_definitions": 50,
+  "local_references_checked": 263,
+  "openapi_operations_structurally_checked": 29,
+  "fixture_files_type_checked": 7,
+  "fixture_quotes_checked": 4,
+  "development_stages": 14,
+  "application_tests": "not_run: application not initialized",
+  "external_platform_api": "unconfirmed",
+  "validation_scope": "local refs, used-schema-subset fixtures, structural OpenAPI, links and file hashes; not full OpenAPI meta-schema validation"
+}

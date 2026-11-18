@@ -1,0 +1,18 @@
+{
+  "name": "材料核验模拟项目",
+  "context": {
+    "bidder_name": "青禾数智测试有限公司",
+    "project_leader": "林明",
+    "deadline": "2026-11-30T09:00:00+08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "scope": {
+    "label": "模拟Q01-Q04",
+    "source_clause_labels": [
+      "Q01",
+      "Q02",
+      "Q03",
+      "Q04"
+    ]
+  }
+}

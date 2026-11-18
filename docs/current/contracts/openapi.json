@@ -1,0 +1,3806 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "智标AI材料核验设计 API",
+    "version": "2.0.0",
+    "description": "设计契约，当前尚未实现业务服务；集团平台协议尚未确认。X-Actor-Id仅为本机试验标签。"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "S01以后约定的开发地址，当前无服务"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "get_health",
+        "summary": "get_health",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/capabilities": {
+      "get": {
+        "operationId": "get_capabilities",
+        "summary": "get_capabilities",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capabilities"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "list_projects",
+        "summary": "list_projects",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create_project",
+        "summary": "create_project",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}": {
+      "get": {
+        "operationId": "get_project",
+        "summary": "get_project",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update_project",
+        "summary": "update_project",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectPatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/files": {
+      "get": {
+        "operationId": "list_files",
+        "summary": "list_files",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileRecordList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "upload_file",
+        "summary": "upload_file",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileRecord"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "source_kind": {
+                    "type": "string",
+                    "enum": [
+                      "tender",
+                      "material"
+                    ]
+                  },
+                  "relative_path": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file",
+                  "source_kind"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{file_id}": {
+      "get": {
+        "operationId": "get_file",
+        "summary": "get_file",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDetail"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{file_id}/content": {
+      "get": {
+        "operationId": "download_file",
+        "summary": "download_file",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{file_id}/pages/{page_index}": {
+      "get": {
+        "operationId": "get_page_image",
+        "summary": "get_page_image",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "page_index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{file_id}/parse": {
+      "post": {
+        "operationId": "parse_file",
+        "summary": "parse_file",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParseRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}": {
+      "get": {
+        "operationId": "get_job",
+        "summary": "get_job",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/retry": {
+      "post": {
+        "operationId": "retry_job",
+        "summary": "retry_job",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/requirement-extractions": {
+      "post": {
+        "operationId": "extract_requirements",
+        "summary": "extract_requirements",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtractionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/requirements": {
+      "get": {
+        "operationId": "list_requirements",
+        "summary": "list_requirements",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequirementList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/requirements/{requirement_id}": {
+      "put": {
+        "operationId": "revise_requirement",
+        "summary": "revise_requirement",
+        "parameters": [
+          {
+            "name": "requirement_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Requirement"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequirementUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/material-extractions": {
+      "post": {
+        "operationId": "extract_materials",
+        "summary": "extract_materials",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtractionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/materials": {
+      "get": {
+        "operationId": "list_materials",
+        "summary": "list_materials",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "include_history",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaterialList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/materials/{material_id}/corrections": {
+      "post": {
+        "operationId": "correct_material_fields",
+        "summary": "correct_material_fields",
+        "parameters": [
+          {
+            "name": "material_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Material"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaterialCorrectionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/verifications": {
+      "post": {
+        "operationId": "start_verification",
+        "summary": "start_verification",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/checks": {
+      "get": {
+        "operationId": "get_check_matrix",
+        "summary": "get_check_matrix",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckMatrix"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/reviews": {
+      "post": {
+        "operationId": "review_target",
+        "summary": "review_target",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewRecord"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/supplements": {
+      "post": {
+        "operationId": "start_supplement",
+        "summary": "start_supplement",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupplementOperation"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SupplementRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/supplements/{operation_id}": {
+      "get": {
+        "operationId": "get_supplement",
+        "summary": "get_supplement",
+        "parameters": [
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupplementOperation"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/exports": {
+      "post": {
+        "operationId": "create_export",
+        "summary": "create_export",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportRecord"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exports/{export_id}": {
+      "get": {
+        "operationId": "get_export",
+        "summary": "get_export",
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportRecord"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exports/{export_id}/content": {
+      "get": {
+        "operationId": "download_export",
+        "summary": "download_export",
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/decision": {
+      "post": {
+        "operationId": "record_decision",
+        "summary": "record_decision",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Actor-Id",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "demo-user"
+            },
+            "description": "本机试验操作标签，不是认证"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "设计成功响应；技术成功不等于条件满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "类型化错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "Timestamp": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "Context": {
+        "type": "object",
+        "properties": {
+          "bidder_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_leader": {
+            "type": "string",
+            "minLength": 1
+          },
+          "deadline": {
+            "$ref": "#/components/schemas/Timestamp"
+          },
+          "timezone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consortium_members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "bidder_name",
+          "project_leader",
+          "deadline",
+          "timezone"
+        ],
+        "additionalProperties": false
+      },
+      "AIContext": {
+        "type": "object",
+        "properties": {
+          "bidder_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_leader": {
+            "type": "string",
+            "minLength": 1
+          },
+          "deadline": {
+            "$ref": "#/components/schemas/Timestamp"
+          },
+          "timezone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consortium_members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "deadline_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "bidder_name",
+          "project_leader",
+          "deadline",
+          "timezone",
+          "deadline_date"
+        ],
+        "additionalProperties": false
+      },
+      "Scope": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_clause_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "section_titles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      },
+      "SourceRef": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "block_id",
+          "quote"
+        ],
+        "additionalProperties": false
+      },
+      "SourceBlock": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "file_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "parse_job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "page_index": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "printed_page_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "section": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "native_text",
+              "ocr",
+              "manual_correction"
+            ]
+          },
+          "bbox": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "quality": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "block_id",
+          "file_id",
+          "parse_job_id",
+          "page_index",
+          "text",
+          "method",
+          "bbox",
+          "quality"
+        ],
+        "additionalProperties": false
+      },
+      "ProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context": {
+            "$ref": "#/components/schemas/Context"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          }
+        },
+        "required": [
+          "name",
+          "context",
+          "scope"
+        ],
+        "additionalProperties": false
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context": {
+            "$ref": "#/components/schemas/Context"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "preparing",
+              "reviewing",
+              "ready_in_scope",
+              "abandoned",
+              "archived"
+            ]
+          },
+          "current_verification_job_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/Timestamp"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        },
+        "required": [
+          "project_id",
+          "name",
+          "context",
+          "scope",
+          "input_revision",
+          "state",
+          "current_verification_job_id",
+          "created_at",
+          "updated_at"
+        ],
+        "additionalProperties": false
+      },
+      "ProjectPatch": {
+        "type": "object",
+        "properties": {
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context": {
+            "$ref": "#/components/schemas/Context"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          }
+        },
+        "required": [
+          "expected_input_revision"
+        ],
+        "additionalProperties": false
+      },
+      "Capabilities": {
+        "type": "object",
+        "properties": {
+          "ai_provider": {
+            "type": "string",
+            "enum": [
+              "mock",
+              "haier_workflow",
+              "internal_model"
+            ]
+          },
+          "is_simulated": {
+            "type": "boolean"
+          },
+          "parser_pdf": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          },
+          "ocr": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          },
+          "word_converter": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          },
+          "storage": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          },
+          "database": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          },
+          "workflow_api": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "not_configured",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "ai_provider",
+          "is_simulated",
+          "parser_pdf",
+          "ocr",
+          "word_converter",
+          "storage",
+          "database",
+          "workflow_api"
+        ],
+        "additionalProperties": false
+      },
+      "FileRecord": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "logical_file_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "version_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "replaces_file_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "tender",
+              "material"
+            ]
+          },
+          "original_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relative_path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "active_state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "active",
+              "superseded",
+              "disabled"
+            ]
+          },
+          "parse_state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "processing",
+              "succeeded",
+              "partial",
+              "failed"
+            ]
+          },
+          "page_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "file_id",
+          "project_id",
+          "logical_file_id",
+          "version_no",
+          "replaces_file_id",
+          "source_kind",
+          "original_name",
+          "relative_path",
+          "sha256",
+          "active_state",
+          "parse_state",
+          "page_count",
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "FileDetail": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "$ref": "#/components/schemas/FileRecord"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceBlock"
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "file",
+          "blocks",
+          "issues"
+        ],
+        "additionalProperties": false
+      },
+      "Fact": {
+        "type": "object",
+        "properties": {
+          "fact_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "field_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "raw_value": {},
+          "normalized_value": {},
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extraction_state": {
+            "type": "string",
+            "enum": [
+              "clear",
+              "absent",
+              "unclear",
+              "conflicting"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            }
+          }
+        },
+        "required": [
+          "fact_id",
+          "field_key",
+          "raw_value",
+          "normalized_value",
+          "unit",
+          "extraction_state",
+          "source_refs"
+        ],
+        "additionalProperties": false
+      },
+      "FactCandidate": {
+        "type": "object",
+        "properties": {
+          "field_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "raw_value": {},
+          "normalized_value": {},
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extraction_state": {
+            "type": "string",
+            "enum": [
+              "clear",
+              "absent",
+              "unclear",
+              "conflicting"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            }
+          }
+        },
+        "required": [
+          "field_key",
+          "raw_value",
+          "normalized_value",
+          "unit",
+          "extraction_state",
+          "source_refs"
+        ],
+        "additionalProperties": false
+      },
+      "Condition": {
+        "type": "object",
+        "properties": {
+          "condition_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "field_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "eq",
+              "gte",
+              "lte",
+              "in",
+              "eq_context",
+              "gte_context_date",
+              "lte_context_date",
+              "semantic",
+              "unknown"
+            ]
+          },
+          "expected": {},
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            }
+          }
+        },
+        "required": [
+          "condition_key",
+          "description",
+          "field_key",
+          "operator",
+          "expected",
+          "unit",
+          "source_refs"
+        ],
+        "additionalProperties": false
+      },
+      "Logic": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "properties": {
+              "all": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/components/schemas/Logic"
+                }
+              }
+            },
+            "required": [
+              "all"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "any": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/components/schemas/Logic"
+                }
+              }
+            },
+            "required": [
+              "any"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "RequirementCandidate": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "eligibility",
+              "disqualification",
+              "scoring",
+              "submission",
+              "delivery",
+              "unknown"
+            ]
+          },
+          "subject_role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_material_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "logic": {
+            "$ref": "#/components/schemas/Logic"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "bid",
+              "delivery",
+              "unknown"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "category",
+          "subject_role",
+          "expected_material_types",
+          "conditions",
+          "logic",
+          "phase",
+          "source_refs",
+          "ambiguities"
+        ],
+        "additionalProperties": false
+      },
+      "Requirement": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "eligibility",
+              "disqualification",
+              "scoring",
+              "submission",
+              "delivery",
+              "unknown"
+            ]
+          },
+          "subject_role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_material_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "logic": {
+            "$ref": "#/components/schemas/Logic"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "bid",
+              "delivery",
+              "unknown"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requirement_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "review_state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "confirmed",
+              "stale"
+            ]
+          },
+          "content_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "category",
+          "subject_role",
+          "expected_material_types",
+          "conditions",
+          "logic",
+          "phase",
+          "source_refs",
+          "ambiguities",
+          "requirement_id",
+          "revision",
+          "review_state",
+          "content_hash"
+        ],
+        "additionalProperties": false
+      },
+      "RequirementUpdate": {
+        "type": "object",
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "candidate": {
+            "$ref": "#/components/schemas/RequirementCandidate"
+          }
+        },
+        "required": [
+          "expected_revision",
+          "candidate"
+        ],
+        "additionalProperties": false
+      },
+      "MaterialCandidate": {
+        "type": "object",
+        "properties": {
+          "material_type": {
+            "type": "string",
+            "enum": [
+              "business_license",
+              "qualification_certificate",
+              "personnel_certificate",
+              "financial_report",
+              "performance_contract",
+              "product_document",
+              "unknown"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "person_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "product_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FactCandidate"
+            }
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "material_type",
+          "title",
+          "entity_name",
+          "person_name",
+          "product_model",
+          "source_block_ids",
+          "facts",
+          "questions"
+        ],
+        "additionalProperties": false
+      },
+      "Material": {
+        "type": "object",
+        "properties": {
+          "material_type": {
+            "type": "string",
+            "enum": [
+              "business_license",
+              "qualification_certificate",
+              "personnel_certificate",
+              "financial_report",
+              "performance_contract",
+              "product_document",
+              "unknown"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "person_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "product_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fact"
+            }
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "material_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "file_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          "extraction_job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "artifact_state": {
+            "type": "string",
+            "enum": [
+              "current",
+              "superseded"
+            ]
+          },
+          "extraction_state": {
+            "type": "string",
+            "enum": [
+              "usable",
+              "partial",
+              "needs_review",
+              "failed"
+            ]
+          },
+          "content_hash": {
+            "type": "string"
+          },
+          "supersedes_material_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "material_type",
+          "title",
+          "entity_name",
+          "person_name",
+          "product_model",
+          "source_block_ids",
+          "facts",
+          "questions",
+          "material_id",
+          "file_ids",
+          "extraction_job_id",
+          "artifact_state",
+          "extraction_state",
+          "content_hash"
+        ],
+        "additionalProperties": false
+      },
+      "EvidenceRef": {
+        "type": "object",
+        "properties": {
+          "material_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "fact_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "block_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "material_id",
+          "fact_id",
+          "block_id",
+          "quote"
+        ],
+        "additionalProperties": false
+      },
+      "ConditionResult": {
+        "type": "object",
+        "properties": {
+          "condition_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            }
+          }
+        },
+        "required": [
+          "condition_key",
+          "state",
+          "reason",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "SupplementAdvice": {
+        "type": "object",
+        "properties": {
+          "material_type": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "required_content": {
+            "type": "string"
+          },
+          "suggested_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "material_type",
+          "subject",
+          "required_content",
+          "suggested_role"
+        ],
+        "additionalProperties": false
+      },
+      "AICheckResponse": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "check_state": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "partial",
+              "missing",
+              "contradicted",
+              "needs_review"
+            ]
+          },
+          "condition_results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConditionResult"
+            }
+          },
+          "conflicts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "supplement_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupplementAdvice"
+            }
+          }
+        },
+        "required": [
+          "requirement_id",
+          "check_state",
+          "condition_results",
+          "conflicts",
+          "issues",
+          "supplement_requests"
+        ],
+        "additionalProperties": false
+      },
+      "CheckResult": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "check_state": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "partial",
+              "missing",
+              "contradicted",
+              "needs_review"
+            ]
+          },
+          "condition_results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConditionResult"
+            }
+          },
+          "conflicts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "supplement_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupplementAdvice"
+            }
+          },
+          "check_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "snapshot_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "requirement_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "candidate_material_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          "dependency_hash": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "mock",
+              "haier_workflow",
+              "internal_model"
+            ]
+          },
+          "is_simulated": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        },
+        "required": [
+          "requirement_id",
+          "check_state",
+          "condition_results",
+          "conflicts",
+          "issues",
+          "supplement_requests",
+          "check_id",
+          "job_id",
+          "snapshot_id",
+          "requirement_revision",
+          "candidate_material_ids",
+          "dependency_hash",
+          "provider",
+          "is_simulated",
+          "created_at"
+        ],
+        "additionalProperties": false
+      },
+      "CheckView": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "requirement_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CheckResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "binding_kind": {
+            "type": "string",
+            "enum": [
+              "computed",
+              "reused",
+              "pending"
+            ]
+          },
+          "validity": {
+            "type": "string",
+            "enum": [
+              "current",
+              "stale",
+              "historical",
+              "pending"
+            ]
+          },
+          "review_state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "confirmed",
+              "stale"
+            ]
+          },
+          "review_record_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reuse_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "requirement_id",
+          "requirement_revision",
+          "result",
+          "binding_kind",
+          "validity",
+          "review_state",
+          "review_record_id",
+          "reuse_reason"
+        ],
+        "additionalProperties": false
+      },
+      "CheckMatrix": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "verification_job_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckView"
+            }
+          },
+          "coverage": {
+            "type": "object"
+          },
+          "has_stale": {
+            "type": "boolean"
+          },
+          "is_simulated": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "project_id",
+          "input_revision",
+          "verification_job_id",
+          "snapshot_id",
+          "items",
+          "coverage",
+          "has_stale",
+          "is_simulated"
+        ],
+        "additionalProperties": false
+      },
+      "JobAccepted": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed",
+              "interrupted",
+              "cancelled"
+            ]
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "job_id",
+          "state",
+          "snapshot_id"
+        ],
+        "additionalProperties": false
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "parse",
+              "extract_requirements",
+              "extract_materials",
+              "verify",
+              "supplement",
+              "export"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed",
+              "interrupted",
+              "cancelled"
+            ]
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "progress": {
+            "type": "object"
+          },
+          "output": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "parent_job_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "job_id",
+          "project_id",
+          "kind",
+          "state",
+          "snapshot_id",
+          "progress",
+          "output",
+          "error",
+          "attempt",
+          "parent_job_id"
+        ],
+        "additionalProperties": false
+      },
+      "ParseRequest": {
+        "type": "object",
+        "properties": {
+          "force": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "ExtractionRequest": {
+        "type": "object",
+        "properties": {
+          "file_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "minItems": 1
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          }
+        },
+        "required": [
+          "file_ids",
+          "expected_input_revision"
+        ],
+        "additionalProperties": false
+      },
+      "VerifyRequest": {
+        "type": "object",
+        "properties": {
+          "requirement_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "minItems": 1
+          },
+          "recheck_requirement_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "requirement_ids",
+          "expected_input_revision"
+        ],
+        "additionalProperties": false
+      },
+      "MaterialCorrectionRequest": {
+        "type": "object",
+        "properties": {
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "corrections": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "fact_id": {
+                  "$ref": "#/components/schemas/Id"
+                },
+                "source_block_id": {
+                  "$ref": "#/components/schemas/Id"
+                },
+                "transcription_text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "normalized_value": {},
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "fact_id",
+                "source_block_id",
+                "transcription_text",
+                "normalized_value",
+                "unit"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "expected_input_revision",
+          "reason",
+          "corrections"
+        ],
+        "additionalProperties": false
+      },
+      "ReviewRequest": {
+        "type": "object",
+        "properties": {
+          "target_kind": {
+            "type": "string",
+            "enum": [
+              "requirement",
+              "check"
+            ]
+          },
+          "target_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "target_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "request_changes"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_kind",
+          "target_id",
+          "target_revision",
+          "expected_input_revision",
+          "decision",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "ReviewRecord": {
+        "type": "object",
+        "properties": {
+          "review_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "target_kind": {
+            "type": "string",
+            "enum": [
+              "requirement",
+              "check"
+            ]
+          },
+          "target_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "target_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "request_changes"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        },
+        "required": [
+          "review_id",
+          "target_kind",
+          "target_id",
+          "target_revision",
+          "decision",
+          "note",
+          "actor_id",
+          "created_at"
+        ],
+        "additionalProperties": false
+      },
+      "SupplementRequest": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "enum": [
+              "add",
+              "replace"
+            ]
+          },
+          "new_file_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "minItems": 1
+          },
+          "target_file_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation",
+          "new_file_ids",
+          "expected_input_revision",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "SupplementOperation": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "add",
+              "replace"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "processing",
+              "committed",
+              "rechecking",
+              "completed",
+              "failed",
+              "recheck_failed"
+            ]
+          },
+          "job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "target_file_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "new_file_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          "affected_requirement_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "operation_id",
+          "operation",
+          "state",
+          "job_id",
+          "target_file_id",
+          "new_file_ids",
+          "affected_requirement_ids",
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "ExportRequest": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "report",
+              "reviewed_bundle"
+            ]
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "requirement_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "kind",
+          "expected_input_revision",
+          "requirement_ids"
+        ],
+        "additionalProperties": false
+      },
+      "ExportRecord": {
+        "type": "object",
+        "properties": {
+          "export_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "job_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "report",
+              "reviewed_bundle"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "is_simulated": {
+            "type": "boolean"
+          },
+          "download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "export_id",
+          "job_id",
+          "snapshot_id",
+          "kind",
+          "state",
+          "is_simulated",
+          "download_url",
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "DecisionRequest": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "abandoned",
+              "archived"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_input_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "decision",
+          "reason",
+          "expected_input_revision"
+        ],
+        "additionalProperties": false
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              },
+              "retryable": {
+                "type": "boolean"
+              },
+              "details": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "retryable",
+              "details"
+            ],
+            "additionalProperties": false
+          },
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "additionalProperties": false
+      },
+      "AIRequirementsResponse": {
+        "type": "object",
+        "properties": {
+          "candidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequirementCandidate"
+            }
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "processed_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unresolved_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "candidates",
+          "questions",
+          "processed_block_ids",
+          "unresolved_block_ids"
+        ],
+        "additionalProperties": false
+      },
+      "AIMaterialsResponse": {
+        "type": "object",
+        "properties": {
+          "material_candidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialCandidate"
+            }
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unclassified_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "material_candidates",
+          "questions",
+          "unclassified_block_ids"
+        ],
+        "additionalProperties": false
+      },
+      "Health": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "timestamp": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        },
+        "required": [
+          "status",
+          "version",
+          "timestamp"
+        ],
+        "additionalProperties": false
+      },
+      "ProjectList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "items",
+          "total"
+        ],
+        "additionalProperties": false
+      },
+      "FileRecordList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileRecord"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "items",
+          "total"
+        ],
+        "additionalProperties": false
+      },
+      "RequirementList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Requirement"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "items",
+          "total"
+        ],
+        "additionalProperties": false
+      },
+      "MaterialList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Material"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "items",
+          "total"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
